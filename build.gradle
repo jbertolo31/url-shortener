@@ -1,0 +1,73 @@
+plugins {
+    id 'org.springframework.boot' version '3.2.3' apply false
+    id 'io.spring.dependency-management' version '1.1.4' apply false
+    id 'org.sonarqube' version '4.4.1.3373'
+}
+
+group = 'com.jasonbertolo'
+version = '0.0.1-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'jacoco'
+    apply plugin: 'project-report'
+    apply plugin: 'org.sonarqube'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    htmlDependencyReport {
+        projects = project.allprojects
+    }
+
+    test {
+        finalizedBy jacocoTestReport
+
+        useJUnitPlatform()
+        reports {
+            junitXml.outputPerTestCase = true
+        }
+    }
+
+    jacoco {
+        toolVersion = "0.8.10"
+    }
+
+    jacocoTestReport {
+        dependsOn test
+
+        reports {
+            xml.required = true
+            html.required = true
+            html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+            csv.required = false
+        }
+    }
+}
+
+// Match these path to individual module jacoco exclusions, note the relative path
+def apiCoverageExclusions = [
+        "api/src/main/java/com/jasonbertolo/urlshortener/api/ApiApplication.java",
+]
+def authServerCoverageExclusions = [
+        "auth-server/src/main/java/com/jasonbertolo/authserver/AuthServerApplication.java",
+]
+def webCoverageExclusions = [
+        "web/src/main/java/com/jasonbertolo/urlshortener/web/WebApplication.java",
+]
+def sonarqubeCoverageExclusions = apiCoverageExclusions + authServerCoverageExclusions + webCoverageExclusions
+sonarqube {
+    properties {
+        property "sonar.projectName", "URL Shortener"
+        property "sonar.projectKey", "url_shortener_AX5KDuwtRoI-mH4hMayK"
+        property "sonar.qualitygate.wait", false
+        property "sonar.coverage.exclusions", sonarqubeCoverageExclusions
+    }
+}

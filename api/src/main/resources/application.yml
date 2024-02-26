@@ -1,0 +1,71 @@
+server:
+  port: 8090
+  error:
+    whitelabel:
+      enabled: false
+
+management:
+  server:
+    port: 48090
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]
+
+spring:
+  webflux:
+    problemdetails:
+      enabled: true
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: url-shortener
+    redis:
+      host: localhost
+      port: 6379
+      repositories:
+        enabled: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${microservices.auth-base-url}
+
+microservices:
+  api-base-url: http://localhost:8090
+  auth-base-url: http://localhost:8085
+  bff-base-url: http://localhost:8080
+
+url-shortener:
+  key-length: 6
+  url-ttl-days: 1826
+  cache-ttl-days: 30
+  external-app-url: ${microservices.bff-base-url}
+  documentation-base-url: ${microservices.api-base-url}${springdoc.swagger-ui.path}
+  scheduled-maintenance:
+    cron-zone: GMT-5
+    cleanup-enabled: true
+    cleanup-cron: 0 0 0 * * * # Every day at midnight
+
+springdoc:
+  swagger-ui:
+    path: /api/v1/docs/swagger-ui/index.html
+    disable-swagger-default-url: true
+    tagsSorter: alpha
+    enabled: true
+  api-docs:
+    path: /api/v1/docs/swagger-docs
+    enabled: true
+  show-actuator: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.security: INFO
+    org.springframework.oauth2: INFO
+    org.springframework.web: INFO
+    com.jasonbertolo.urlshortener.api: DEBUG

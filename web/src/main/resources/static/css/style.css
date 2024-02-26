@@ -1,0 +1,29 @@
+body {
+    font-size: .875rem;
+    font-family: Helvetica,Arial,sans-serif;
+}
+
+.color-urlshortener-blue {
+    color: #66cccc;
+}
+
+#my-short-urls td {
+    padding: 0.2rem;
+}
+td > span.fit {
+    display: inline-block;
+    max-width: 10rem;
+}
+
+.my-short-urls.popover {
+    --bs-popover-bg: #000000;
+    --bs-popover-border-color: #000000;
+    --bs-popover-body-color: #66cccc;
+}
+.my-short-urls .popover-body {
+    padding: 0.3rem;
+}
+.my-short-urls.tooltip {
+    --bs-tooltip-bg: #000000;
+    --bs-tooltip-color: #66cccc;
+}

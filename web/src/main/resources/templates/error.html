@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>URL Shortener</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" href="../static/images/favicon.ico"/>
+</head>
+<body>
+<main>
+    <div class="px-4 py-5 my-5 text-center">
+        <img class="d-block mx-auto mb-4" th:src="@{/images/link.png}" src="../static/images/link.png"
+             alt="URL Shortener" width="120" height="120">
+        <h1 class="display-5 fw-bold text-body-emphasis">Error!</h1>
+        <div class="col-lg-6 mx-auto" th:switch="${ex}">
+            <p class="lead mb-4 err-msg" th:case="NoResourceFoundException">
+                This page cannot be found or this Short URL is dead. If this link was shared, it's possible the
+                creator has deleted it.
+            </p>
+            <p class="lead mb-4 err-msg" th:case="AccessDeniedException">
+                You are not authorized to do this, let's get out of here.
+            </p>
+            <p class="lead mb-4 err-msg" th:case="*">
+                There was an error processing your request. Our robots are working diligently to resolve the issue.
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a type="button" th:href="@{/}" href="index.html" class="btn btn-primary btn-lg px-4 gap-3">Home</a>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

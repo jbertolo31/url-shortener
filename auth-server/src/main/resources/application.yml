@@ -1,0 +1,46 @@
+server:
+  port: 8085
+  error:
+    whitelabel:
+      enabled: false
+
+management:
+  server:
+    port: 48085
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]
+
+spring:
+  security:
+    user:
+      name: user
+      password: "{noop}user"
+      roles: USER
+    oauth2:
+      authorizationserver:
+        client:
+          url_shortener:
+            registration:
+              client-id: url_shortener
+              client-secret: "{noop}url_shortener_secret"
+              client-authentication-methods: client_secret_basic
+              authorization-grant-types: authorization_code,refresh_token,client_credentials
+              redirect-uris: http://localhost:8080/login/oauth2/code/url_shortener
+              post-logout-redirect-uris: http://localhost:8080
+              scopes: openid,profile,shorturl:read,shorturl:write,cache:read,cache:write
+            require-authorization-consent: false
+            token:
+              access-token-time-to-live: 3600s
+              refresh-token-time-to-live: 7200s
+
+logging:
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
+    org.springframework.oauth2: DEBUG
+    org.springframework.web: INFO

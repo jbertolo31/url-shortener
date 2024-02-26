@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>URL Shortener</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" href="../static/images/favicon.ico"/>
+</head>
+<body>
+<main>
+    <!-- Short URL Delete Confirmation -->
+    <div class="modal fade" id="short-url-delete-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Short URL?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete Short URL with id <span class="short-url-id"></span>? Anybody
+                        you have shared this URL with will no longer be able to use it.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="short-url-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-5 border-bottom">
+            <a th:href="@{/my-short-urls}" href="my-short-urls.html"
+               class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <img class="me-2" th:src="@{/images/link.png}" src="../static/images/link.png"
+                     alt="URL Shortener" width="40" height="40">
+                <span class="fs-4">URL Shortener</span>
+            </a>
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a id="apidocs-link" href="#" class="nav-link" target="_blank">API Docs</a>
+                </li>
+                <li class="nav-item">
+                    <a id="logout-link" href="#" class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </header>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+        <h3>Create Short URL</h3>
+
+        <form id="create-short-url-form" class="mb-5 needs-validation" novalidate>
+            <div class="row">
+                <div class="col col-sm-6 mb-3">
+                    <label for="create-url-input-url" class="form-label">URL to shorten. This must be a valid
+                        <a href="https://owasp.org/www-community/OWASP_Validation_Regex_Repository" target="_blank">
+                            OWASP URL
+                        </a>
+                    </label>
+                    <input type="text" class="form-control" id="create-url-input-url" aria-describedby="create-url-help"
+                           required maxlength="2000">
+                    <div class="invalid-feedback">
+                        URL is not valid. It is required, must follow URL standards and be no longer than 2000 characters.
+                    </div>
+                </div>
+                <div class="col col-sm-6 mb-3">
+                    <label for="create-url-input-desc" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="create-url-input-desc" maxlength="100">
+                    <div class="invalid-feedback">
+                        This description is too long
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <h3>My Short URLs</h3>
+
+        <div class="table-responsive mb-1">
+            <table id="my-short-urls" class="table table-striped text-nowrap">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Short URL</th>
+                    <th scope="col">Original URL</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Expires</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex">
+            <div class="flex-grow-1">
+                <nav class="col-4" aria-label="My Short URLs navigation">
+                    <ul id="my-short-urls-nav" class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link previous" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item disabled">
+                            <a class="page-link next" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <p class="p-1" id="my-short-urls-pginfo">
+                1-10 of 15
+            </p>
+            <div>
+                <select id="my-short-urls-pgsize" class="form-select form-select-sm w-auto"
+                        aria-label="My Short URLs page size">
+                    <option value="10" selected>10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="py-3 my-4">
+            <p class="text-center text-body-secondary">© 2024 Jason Bertolo</p>
+        </footer>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="notifications"></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/config.js}"></script>
+<script th:src="@{/js/my-short-urls.js}" src="../static/js/my-short-urls.js"></script>
+</body>
+</html>

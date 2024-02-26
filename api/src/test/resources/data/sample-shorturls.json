@@ -1,0 +1,74 @@
+[
+  {
+    "_class": "com.jasonbertolo.urlshortener.api.model.ShortUrl",
+    "id": "object001",
+    "key": "key001",
+    "url": "https://www.amazon.com/Mission-Impossible-Dead-Reckoning-Part/dp/B0B8RQDDHZ/ref=sr_1_4?crid=2PPKS4IR8D4QN&dib=eyJ2IjoiMSJ9.Klwc3XdGqQPRhFiMHL5EfqI_lJPUu6LSTSkKS_LITZ3sygMzJ5bwzoDlM3BO5VqcBuv3J1I7cxENg_yYZn3u0KKpPvdwbyEcc-DIfHFnGZ6aMHxeMqZopo3AslAt2nVM-bzP8AC4et4OvfaQt3YZSwKWc5cQZIKxlTioqXlfoDjAyMTk9vdLGk490Zf9mDHImzfOipYr9mU-rtQRkEEZgK5ICVUj4R_DkjVs4qGk3jM.hXJsAVGVSUvT3qKieQ7h5nhs2jkx_rOoXJGITb9NTi8&dib_tag=se&keywords=movies&qid=1708132384&sprefix=movies%2Caps%2C83&sr=8-4",
+    "description": "Short URL 1 for user",
+    "createdAt": "2024-02-10T10:05:05.500Z",
+    "createdBy": "user",
+    "lastUpdatedAt": "2024-02-10T10:05:05.500Z",
+    "lastUpdatedBy": "user",
+    "expiresAt": "2029-02-10T10:05:05.500Z"
+  },
+  {
+    "_class": "com.jasonbertolo.urlshortener.api.model.ShortUrl",
+    "id": "object002",
+    "key": "key002",
+    "url": "https://www.amazon.com/Amateur-Night-Jason-Biggs/dp/B01JIN92D0/ref=sr_1_3?crid=2PPKS4IR8D4QN&dib=eyJ2IjoiMSJ9.Klwc3XdGqQPRhFiMHL5EfqI_lJPUu6LSTSkKS_LITZ3sygMzJ5bwzoDlM3BO5VqcBuv3J1I7cxENg_yYZn3u0KKpPvdwbyEcc-DIfHFnGZ6aMHxeMqZopo3AslAt2nVM-bzP8AC4et4OvfaQt3YZSwKWc5cQZIKxlTioqXlfoDjAyMTk9vdLGk490Zf9mDHImzfOipYr9mU-rtQRkEEZgK5ICVUj4R_DkjVs4qGk3jM.hXJsAVGVSUvT3qKieQ7h5nhs2jkx_rOoXJGITb9NTi8&dib_tag=se&keywords=movies&qid=1708132384&sprefix=movies%2Caps%2C83&sr=8-3",
+    "description": "Short URL 2 for user",
+    "createdAt": "2024-02-11T10:05:05.500Z",
+    "createdBy": "user",
+    "lastUpdatedAt": "2024-02-11T10:05:05.500Z",
+    "lastUpdatedBy": "user",
+    "expiresAt": "2029-02-11T10:05:05.500Z"
+  },
+  {
+    "_class": "com.jasonbertolo.urlshortener.api.model.ShortUrl",
+    "id": "object003",
+    "key": "key003",
+    "url": "https://www.amazon.com/Underdoggs-Snoop-Dogg/dp/B0CMSHFQ15/ref=sr_1_6?crid=2PPKS4IR8D4QN&dib=eyJ2IjoiMSJ9.Klwc3XdGqQPRhFiMHL5EfqI_lJPUu6LSTSkKS_LITZ3sygMzJ5bwzoDlM3BO5VqcBuv3J1I7cxENg_yYZn3u0KKpPvdwbyEcc-DIfHFnGZ6aMHxeMqZopo3AslAt2nVM-bzP8AC4et4OvfaQt3YZSwKWc5cQZIKxlTioqXlfoDjAyMTk9vdLGk490Zf9mDHImzfOipYr9mU-rtQRkEEZgK5ICVUj4R_DkjVs4qGk3jM.hXJsAVGVSUvT3qKieQ7h5nhs2jkx_rOoXJGITb9NTi8&dib_tag=se&keywords=movies&qid=1708132384&sprefix=movies%2Caps%2C83&sr=8-6",
+    "description": "Short URL 3 for user",
+    "createdAt": "2024-02-12T10:05:05.500Z",
+    "createdBy": "user",
+    "lastUpdatedAt": "2024-02-12T10:05:05.500Z",
+    "lastUpdatedBy": "user",
+    "expiresAt": "2029-02-12T10:05:05.500Z"
+  },
+  {
+    "_class": "com.jasonbertolo.urlshortener.api.model.ShortUrl",
+    "id": "object004",
+    "key": "key004",
+    "url": "https://www.primevideo.com/detail/amzn1.dv.gti.1bfde9bc-06c4-472d-84e8-13e019fa34b1?ref_=dvm_crs_gat_ca_ot_s_d_hero_oppenheimer",
+    "description": "Short URL for user expired",
+    "createdAt": "2018-12-29T10:05:05.500Z",
+    "createdBy": "user",
+    "lastUpdatedAt": "2020-10-31T10:05:05.500Z",
+    "lastUpdatedBy": "user",
+    "expiresAt": "2023-12-29T10:05:05.500Z"
+  },
+  {
+    "_class": "com.jasonbertolo.urlshortener.api.model.ShortUrl",
+    "id": "object010",
+    "key": "key010",
+    "url": "https://www.dropbox.com/home/Images?preview=1.png",
+    "description": "Short URL 1 for user 2",
+    "createdAt": "2024-02-10T10:05:05.500Z",
+    "createdBy": "user2",
+    "lastUpdatedAt": "2024-02-10T10:05:05.500Z",
+    "lastUpdatedBy": "user2",
+    "expiresAt": "2029-02-10T10:05:05.500Z"
+  },
+  {
+    "_class": "com.jasonbertolo.urlshortener.api.model.ShortUrl",
+    "id": "object011",
+    "key": "key011",
+    "url": "https://www.dropbox.com/home/Images?preview=2.png",
+    "description": "Short URL for user 2 expired",
+    "createdAt": "2018-12-29T10:05:05.500Z",
+    "createdBy": "user2",
+    "lastUpdatedAt": "2021-02-10T10:05:05.500Z",
+    "lastUpdatedBy": "user2",
+    "expiresAt": "2023-12-29T10:05:05.500Z"
+  }
+]

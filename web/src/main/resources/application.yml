@@ -1,0 +1,68 @@
+server:
+  port: 8080
+  reactive:
+    session:
+      timeout: 30m
+  error:
+    whitelabel:
+      enabled: false
+    path: /error
+
+management:
+  server:
+    port: 48080
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          url_shortener:
+            provider: auth-server
+            client-id: url_shortener
+            client-secret: url_shortener_secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: openid,profile,shorturl:read,shorturl:write
+            client-name: URL Shortener
+          url_shortener_cache:
+            provider: auth-server
+            client-id: url_shortener
+            client-secret: url_shortener_secret
+            scope: cache:read,cache:write
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: client_credentials
+        provider:
+          auth-server:
+            issuer-uri: ${microservices.auth-base-url}
+
+microservices:
+  api-base-url: http://localhost:8090
+  auth-base-url: http://localhost:8085
+  bff-base-url: http://localhost:8080
+
+url-shortener:
+  key-length: 6
+
+ui:
+  browser-routing-paths: "/index"
+  frontend-config:
+    apiBaseURL: ${microservices.api-base-url}
+    authBaseUrl: ${microservices.auth-base-url}
+    bffBaseURL: ${microservices.bff-base-url}
+    debug: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.security: INFO
+    org.springframework.oauth2: INFO
+    org.springframework.web: DEBUG
+    com.jasonbertolo.urlshortener.web: DEBUG
